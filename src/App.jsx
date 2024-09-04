@@ -12,7 +12,15 @@ export default function App() {
   const [resultsReady, setResultsReady] = useState(false)
   const [hydrated, setHydrated] = useState(false)
 
-  function handleClick() {}
+  function handleClick(e) {
+    const clickedEmoji = e.target.textContent
+    setLikedEmojis([...likedEmojis,clickedEmoji])
+
+    const notClickedEmojis = currentEmojis.filter((emoji) => emoji !== clickedEmoji)
+    setPassedEmojis([...passedEmojis,...notClickedEmojis])
+
+    setCurrentEmojis(getRandomEmojis())
+  }
   /* Challenge
 
 	Uygulamanın çalışması için yukarıdaki handleClick fonksiyonunun tamamlanması gerekir. Fonksiyon, kullanıcı butonlardan birine tıkladığında çağrıldığında üç şey yapmalıdır (satır 77 ila 85): 
